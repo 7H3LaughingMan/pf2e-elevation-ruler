@@ -30,39 +30,39 @@ const Unreachable = {
 
 Hooks.once("ready", () => {
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "singleAction", {
-        name: "Single Action Color",           // The name of the setting in the settings menu
-        label: "Color Picker",              // The text label used in the button
-        restricted: false,                  // Restrict this setting to gamemaster only?
-        defaultColor: "#3222C7",          // The default color of the setting
-        scope: "client",                    // The scope of the setting
-        onChange: (value) => {}            // A callback function which triggers when the setting is changed
+        name: "Single Action Color",
+        label: "Color Picker",
+        restricted: false,
+        defaultColor: "#3222C7",
+        scope: "client",
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[0].color = Color.from(value); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "doubleAction", {
-        name: "Double Action Color",           // The name of the setting in the settings menu
-        label: "Color Picker",              // The text label used in the button
-        restricted: false,                  // Restrict this setting to gamemaster only?
-        defaultColor: "#FFEC07",          // The default color of the setting
-        scope: "client",                    // The scope of the setting
-        onChange: (value) => {}            // A callback function which triggers when the setting is changed
+        name: "Double Action Color",
+        label: "Color Picker",
+        restricted: false,
+        defaultColor: "#FFEC07",
+        scope: "client",
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[1].color = Color.from(value); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "tripleAction", {
-        name: "Triple Action Color",           // The name of the setting in the settings menu
-        label: "Color Picker",              // The text label used in the button
-        restricted: false,                  // Restrict this setting to gamemaster only?
-        defaultColor: "#C033E0",          // The default color of the setting
-        scope: "client",                    // The scope of the setting
-        onChange: (value) => {}            // A callback function which triggers when the setting is changed
+        name: "Triple Action Color",
+        label: "Color Picker",
+        restricted: false,
+        defaultColor: "#C033E0",
+        scope: "client",
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[2].color = Color.from(value); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "quadrupleAction", {
-        name: "Quadruple Action Color",           // The name of the setting in the settings menu
-        label: "Color Picker",              // The text label used in the button
-        restricted: false,                  // Restrict this setting to gamemaster only?
-        defaultColor: "#1BCAD8",          // The default color of the setting
-        scope: "client",                    // The scope of the setting
-        onChange: (value) => {}            // A callback function which triggers when the setting is changed
+        name: "Quadruple Action Color",
+        label: "Color Picker",
+        restricted: false,
+        defaultColor: "#1BCAD8",
+        scope: "client",
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[3].color = Color.from(value); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "unreachable", {
@@ -71,7 +71,7 @@ Hooks.once("ready", () => {
         restricted: false,
         defaultColor: "#FF0000",
         scope: "client",
-        onChange: (value) => {}
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[4].color = Color.from(value); }
     })
 
     CONFIG.elevationruler.SPEED.CATEGORIES = [ SingleAction, DoubleAction, TripleAction, QuadrupleAction, Unreachable ];
