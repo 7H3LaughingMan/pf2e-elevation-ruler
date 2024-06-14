@@ -1,0 +1,54 @@
+{
+    "id": "pf2e-elevation-ruler",
+    "title": "PF2e Elevation Ruler",
+    "description": "A module that extends Elevation Ruler with PF2e support.",
+    "version": "12.0.0",
+    "authors": [
+        {
+            "name": "7H3LaughingMan",
+            "discord": "7h3laughingman"
+        }
+    ],
+    "compatibility": {
+        "minimum": "12.327",
+        "verified": "12.327",
+        "maximum": "12"
+    },
+    "esmodules": [
+        "scripts/module.js"
+    ],
+    "url": "https://github.com/7H3LaughingMan/pf2e-elevation-ruler",
+    "bugs": "https://github.com/7H3LaughingMan/pf2e-elevation-ruler/issues",
+    "manifest": "https://raw.githubusercontent.com/7H3LaughingMan/pf2e-elevation-ruler/main/module.json",
+    "download": "https://github.com/7H3LaughingMan/pf2e-elevation-ruler/archive/refs/heads/main.zip",
+    "license": "LICENSE",
+    "readme": "README.md",
+    "media": [
+        {
+            "type": "icon",
+            "url": "https://avatars.githubusercontent.com/u/117857081?v=4"
+        }
+    ],
+    "relationships": {
+        "systems": [
+            {
+                "id": "pf2e",
+                "type": "system",
+                "manifest": "https://github.com/foundryvtt/pf2e/releases/latest/download/system.json",
+                "compatibility": {
+                    "minimum": "6.0.1"
+                }
+            }
+        ],
+        "requires": [
+            {
+                "id": "elevationruler",
+                "type": "module",
+                "manifest": "https://github.com/caewok/fvtt-elevation-ruler/releases/latest/download/module.json",
+                "compatibility": {
+                    "minimum": "0.9.4"
+                }
+            }
+        ]
+    }
+}
