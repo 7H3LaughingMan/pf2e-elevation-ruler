@@ -1,33 +1,3 @@
-const SingleAction = {
-    name: "Single Action",
-    color: Color.from(0x3222C7),
-    multiplier: 1
-}
-
-const DoubleAction = {
-    name: "Double Action",
-    color: Color.from(0xFFEC07),
-    multiplier: 2
-}
-
-const TripleAction = {
-    name: "Triple Action",
-    color: Color.from(0xC033E0),
-    multiplier: 3
-}
-
-const QuadrupleAction = {
-    name: "Quadruple Action",
-    color: Color.from(0x1BCAD8),
-    multiplier: 4
-}
-
-const Unreachable = {
-    name: "Unreachable",
-    color: Color.from(0xff0000),
-    multiplier: Number.POSITIVE_INFINITY
-}
-
 Hooks.once("ready", () => {
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "singleAction", {
         name: "Single Action Color",
@@ -74,9 +44,39 @@ Hooks.once("ready", () => {
         onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[4].color = Color.from(value.substring(0, 7)); }
     })
 
-    CONFIG.elevationruler.SPEED.CATEGORIES = [ SingleAction, DoubleAction, TripleAction, QuadrupleAction, Unreachable ];
+    let SingleAction = {
+        name: "Single Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "singleAction").substring(0, 7)),
+        multiplier: 1
+    }
 
-    CONFIG.elevationruler.SPEED.tokenSpeed = function(token) {
+    let DoubleAction = {
+        name: "Double Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "doubleAction").substring(0, 7)),
+        multiplier: 2
+    }
+
+    let TripleAction = {
+        name: "Triple Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "tripleAction").substring(0, 7)),
+        multiplier: 3
+    }
+
+    let QuadrupleAction = {
+        name: "Quadruple Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "quadrupleAction").substring(0, 7)),
+        multiplier: 4
+    }
+
+    let Unreachable = {
+        name: "Unreachable",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "unreachable").substring(0, 7)),
+        multiplier: Number.POSITIVE_INFINITY
+    }
+
+    CONFIG.elevationruler.SPEED.CATEGORIES = [SingleAction, DoubleAction, TripleAction, QuadrupleAction, Unreachable];
+
+    CONFIG.elevationruler.SPEED.tokenSpeed = function (token) {
         let speed = null;
         let tokenSpeed = token.actor.system.attributes.speed;
 
@@ -98,7 +98,7 @@ Hooks.once("ready", () => {
                 break;
         };
 
-        if ( speed === null ) return null;
+        if (speed === null) return null;
         return Number(speed);
     };
 });
