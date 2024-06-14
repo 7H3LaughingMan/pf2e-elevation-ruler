@@ -35,7 +35,7 @@ Hooks.once("ready", () => {
         restricted: false,
         defaultColor: "#3222C7",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[0].color = Color.from(value); }
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[0].color = Color.from(value.substring(0, 7)); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "doubleAction", {
@@ -44,7 +44,7 @@ Hooks.once("ready", () => {
         restricted: false,
         defaultColor: "#FFEC07",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[1].color = Color.from(value); }
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[1].color = Color.from(value.substring(0, 7)); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "tripleAction", {
@@ -53,7 +53,7 @@ Hooks.once("ready", () => {
         restricted: false,
         defaultColor: "#C033E0",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[2].color = Color.from(value); }
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[2].color = Color.from(value.substring(0, 7)); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "quadrupleAction", {
@@ -62,7 +62,7 @@ Hooks.once("ready", () => {
         restricted: false,
         defaultColor: "#1BCAD8",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[3].color = Color.from(value); }
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[3].color = Color.from(value.substring(0, 7)); }
     })
 
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "unreachable", {
@@ -71,7 +71,7 @@ Hooks.once("ready", () => {
         restricted: false,
         defaultColor: "#FF0000",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[4].color = Color.from(value); }
+        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[4].color = Color.from(value.substring(0, 7)); }
     })
 
     CONFIG.elevationruler.SPEED.CATEGORIES = [ SingleAction, DoubleAction, TripleAction, QuadrupleAction, Unreachable ];
