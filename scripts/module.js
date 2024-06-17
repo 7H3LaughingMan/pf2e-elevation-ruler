@@ -1,3 +1,5 @@
+import { getActionCount } from "./action.js"
+
 Hooks.once("ready", () => {
     new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "singleAction", {
         name: "Single Action Color",
@@ -43,6 +45,16 @@ Hooks.once("ready", () => {
         scope: "client",
         onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[4].color = Color.from(value.substring(0, 7)); }
     })
+
+    game.settings.register("pf2e-elevation-ruler", "limitActions", {
+        name: "Limit Actions",
+        hint: "This will limit the number of actions available to a token for movement if they are slowed/stunned.",
+        scope: "world",
+        config: true,
+        default: true,
+        type: Boolean,
+        requiresReload: true
+    });
 
     let SingleAction = {
         name: "Single Action",
@@ -100,5 +112,22 @@ Hooks.once("ready", () => {
 
         if (speed === null) return null;
         return Number(speed);
+    };
+
+    CONFIG.elevationruler.SPEED.maximumCategoryDistance = function (token, speedCategory, tokenSpeed) {
+        let actionCount = getActionCount(token);
+
+        switch (speedCategory.name) {
+            case "Single Action":
+                return ((actionCount >= 1) ? speedCategory.multiplier * tokenSpeed : 0);
+            case "Double Action":
+                return ((actionCount >= 2) ? speedCategory.multiplier * tokenSpeed : 0);
+            case "Triple Action":
+                return ((actionCount >= 3) ? speedCategory.multiplier * tokenSpeed : 0);
+            case "Quadruple Action":
+                return ((actionCount >= 4) ? speedCategory.multiplier * tokenSpeed : 0);
+        }
+
+        return Number.POSITIVE_INFINITY;
     };
 });
