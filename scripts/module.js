@@ -1,50 +1,50 @@
 import { getActionCount } from "./action.js"
 
-Hooks.once("ready", () => {
-    new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "singleAction", {
+Hooks.once("init", () => {
+    game.settings.register("pf2e-elevation-ruler", "singleAction", {
         name: "Single Action Color",
-        label: "Color Picker",
-        restricted: false,
-        defaultColor: "#3222C7",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[0].color = Color.from(value.substring(0, 7)); }
-    })
+        config: true,
+        type: new foundry.data.fields.ColorField(),
+        default: "#3222C7",
+        onChange: (value) => { refreshSpeedCategories(); }
+    });
 
-    new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "doubleAction", {
+    game.settings.register("pf2e-elevation-ruler", "doubleAction", {
         name: "Double Action Color",
-        label: "Color Picker",
-        restricted: false,
-        defaultColor: "#FFEC07",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[1].color = Color.from(value.substring(0, 7)); }
-    })
+        config: true,
+        type: new foundry.data.fields.ColorField(),
+        default: "#FFEC07",
+        onChange: (value) => { refreshSpeedCategories(); }
+    });
 
-    new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "tripleAction", {
+    game.settings.register("pf2e-elevation-ruler", "tripleAction", {
         name: "Triple Action Color",
-        label: "Color Picker",
-        restricted: false,
-        defaultColor: "#C033E0",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[2].color = Color.from(value.substring(0, 7)); }
-    })
+        config: true,
+        type: new foundry.data.fields.ColorField(),
+        default: "#C033E0",
+        onChange: (value) => { refreshSpeedCategories(); }
+    });
 
-    new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "quadrupleAction", {
+    game.settings.register("pf2e-elevation-ruler", "quadrupleAction", {
         name: "Quadruple Action Color",
-        label: "Color Picker",
-        restricted: false,
-        defaultColor: "#1BCAD8",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[3].color = Color.from(value.substring(0, 7)); }
-    })
+        config: true,
+        type: new foundry.data.fields.ColorField(),
+        default: "#1BCAD8",
+        onChange: (value) => { refreshSpeedCategories(); }
+    });
 
-    new window.Ardittristan.ColorSetting("pf2e-elevation-ruler", "unreachable", {
+    game.settings.register("pf2e-elevation-ruler", "unreachable", {
         name: "Unreachable",
-        label: "Color Picker",
-        restricted: false,
-        defaultColor: "#FF0000",
         scope: "client",
-        onChange: (value) => { CONFIG.elevationruler.SPEED.CATEGORIES[4].color = Color.from(value.substring(0, 7)); }
-    })
+        config: true,
+        type: new foundry.data.fields.ColorField(),
+        default: "#FF0000",
+        onChange: (value) => { refreshSpeedCategories(); }
+    });
 
     game.settings.register("pf2e-elevation-ruler", "limitActions", {
         name: "Limit Actions",
@@ -53,40 +53,11 @@ Hooks.once("ready", () => {
         config: true,
         default: true,
         type: Boolean,
-        requiresReload: true
     });
+});
 
-    let SingleAction = {
-        name: "Single Action",
-        color: Color.from(game.settings.get("pf2e-elevation-ruler", "singleAction").substring(0, 7)),
-        multiplier: 1
-    }
-
-    let DoubleAction = {
-        name: "Double Action",
-        color: Color.from(game.settings.get("pf2e-elevation-ruler", "doubleAction").substring(0, 7)),
-        multiplier: 2
-    }
-
-    let TripleAction = {
-        name: "Triple Action",
-        color: Color.from(game.settings.get("pf2e-elevation-ruler", "tripleAction").substring(0, 7)),
-        multiplier: 3
-    }
-
-    let QuadrupleAction = {
-        name: "Quadruple Action",
-        color: Color.from(game.settings.get("pf2e-elevation-ruler", "quadrupleAction").substring(0, 7)),
-        multiplier: 4
-    }
-
-    let Unreachable = {
-        name: "Unreachable",
-        color: Color.from(game.settings.get("pf2e-elevation-ruler", "unreachable").substring(0, 7)),
-        multiplier: Number.POSITIVE_INFINITY
-    }
-
-    CONFIG.elevationruler.SPEED.CATEGORIES = [SingleAction, DoubleAction, TripleAction, QuadrupleAction, Unreachable];
+Hooks.once("ready", () => {
+    refreshSpeedCategories();
 
     CONFIG.elevationruler.SPEED.tokenSpeed = function (token) {
         let speed = null;
@@ -131,3 +102,37 @@ Hooks.once("ready", () => {
         return Number.POSITIVE_INFINITY;
     };
 });
+
+function refreshSpeedCategories() {
+    let SingleAction = {
+        name: "Single Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "singleAction")),
+        multiplier: 1
+    }
+
+    let DoubleAction = {
+        name: "Double Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "doubleAction")),
+        multiplier: 2
+    }
+
+    let TripleAction = {
+        name: "Triple Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "tripleAction")),
+        multiplier: 3
+    }
+
+    let QuadrupleAction = {
+        name: "Quadruple Action",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "quadrupleAction")),
+        multiplier: 4
+    }
+
+    let Unreachable = {
+        name: "Unreachable",
+        color: Color.from(game.settings.get("pf2e-elevation-ruler", "unreachable")),
+        multiplier: Number.POSITIVE_INFINITY
+    }
+
+    CONFIG.elevationruler.SPEED.CATEGORIES = [SingleAction, DoubleAction, TripleAction, QuadrupleAction, Unreachable];
+}

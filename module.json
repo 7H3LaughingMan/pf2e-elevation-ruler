@@ -2,7 +2,7 @@
     "id": "pf2e-elevation-ruler",
     "title": "PF2e Elevation Ruler",
     "description": "A module that extends Elevation Ruler with PF2e support.",
-    "version": "12.327.2",
+    "version": "12.327.3",
     "authors": [
         {
             "name": "7H3LaughingMan",
@@ -35,7 +35,7 @@
             {
                 "id": "pf2e",
                 "type": "system",
-                "manifest": "https://github.com/foundryvtt/pf2e/releases/download/6.0.1/system.json",
+                "manifest": "https://github.com/foundryvtt/pf2e/releases/latest/download/system.json",
                 "compatibility": {
                     "minimum": "6.0.1"
                 }
@@ -45,17 +45,9 @@
             {
                 "id": "elevationruler",
                 "type": "module",
-                "manifest": "https://github.com/caewok/fvtt-elevation-ruler/releases/download/0.9.4/module.json",
+                "manifest": "https://github.com/caewok/fvtt-elevation-ruler/releases/latest/download/module.json",
                 "compatibility": {
                     "minimum": "0.9.4"
-                }
-            },
-            {
-                "id": "colorsettings",
-                "type": "module",
-                "manifest": "https://raw.githubusercontent.com/ardittristan/VTTColorSettings/3.0.3/module.json",
-                "compatibility": {
-                    "minimum": "3.0.3"
                 }
             }
         ]
