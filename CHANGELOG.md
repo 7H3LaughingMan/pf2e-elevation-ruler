@@ -1,5 +1,9 @@
 # v12.327.2
 
+- Removed Color Setting Dependency
+
+# v12.327.2
+
 - Limit actions in combat
     - If a token is Immobilized, Paralyzed, Petrified, or Unconcious they get 0 actions.
     - If a token is a minion then it's base number of actions is 2.
