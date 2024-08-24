@@ -2,7 +2,7 @@
     "id": "pf2e-elevation-ruler",
     "title": "PF2e Elevation Ruler",
     "description": "A module that extends Elevation Ruler with PF2e support.",
-    "version": "12.327.3",
+    "version": "12.331",
     "authors": [
         {
             "name": "7H3LaughingMan",
@@ -10,8 +10,8 @@
         }
     ],
     "compatibility": {
-        "minimum": "12.327",
-        "verified": "12.327",
+        "minimum": "12",
+        "verified": "12",
         "maximum": "12"
     },
     "esmodules": [
