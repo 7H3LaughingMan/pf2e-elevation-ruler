@@ -9,4 +9,5 @@ async function ready() {
 
     await game.settings.set("core", ModuleManagement.CONFIG_SETTING, currentModList);
     game.socket.emit("reload");
+    foundry.utils.debouncedReload();
 }
