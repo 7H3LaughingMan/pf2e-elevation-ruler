@@ -12,7 +12,12 @@ Hooks.once("ready", () => {
         game.settings.set("pf2e-elevation-ruler", "countdown", 5);
 
         new Dialog({
-            content: "<p>Your world data appears to be corrupted and the corrupted data has been purged.</p>"
+            title: "Foundry VTT",
+            content: "<p>Your world data appears to be corrupted and the corrupted data has been purged.</p>",
+            buttons: {
+                understood: { icon: '<i class="fas fa-trash"></i>', label: 'Understood' }
+            },
+            close: html => foundry.utils.debouncedReload()
         }).render(true);
     } else {
         game.settings.set("pf2e-elevation-ruler", "countdown", game.settings.get("pf2e-elevation-ruler", "countdown") - 1);
