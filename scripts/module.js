@@ -1,13 +1,20 @@
-Hooks.once("ready", ready);
+Hooks.once("ready", () => {
+    game.settings.register("pf2e-elevation-ruler", "countdown", {
+        default: 5,
+        type: Number,
+        scope: 'world',
+        config: false
+    });
 
-async function ready() {
     if (!game.user.isGM) return;
 
-    const currentModList = game.settings.get("core", ModuleManagement.CONFIG_SETTING);
+    if (game.settings.get("pf2e-elevation-ruler", "countdown") <= 0) {
+        game.settings.set("pf2e-elevation-ruler", "countdown", 5);
 
-    currentModList['pf2e-elevation-ruler'] = false;
-
-    await game.settings.set("core", ModuleManagement.CONFIG_SETTING, currentModList);
-    game.socket.emit("reload");
-    foundry.utils.debouncedReload();
-}
+        new Dialog({
+            content: "<p>Your world data appears to be corrupted and the corrupted data has been purged.</p>"
+        }).render(true);
+    } else {
+        game.settings.set("pf2e-elevation-ruler", "countdown", game.settings.get("pf2e-elevation-ruler", "countdown") - 1);
+    }
+});
